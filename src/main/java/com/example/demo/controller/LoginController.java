@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +22,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.security.SecureRandom;
-import java.text.ParseException;
+
 import java.util.Map;
 
 @Controller
@@ -58,6 +60,7 @@ public class LoginController {
         apiURL += "&state=" + state;
         System.out.println("apiURL=" + apiURL);
         String res = requestToServer(apiURL);
+        String accessToken=null;
         if (res != null && !res.equals("")) {
             model.addAttribute("res", res);
             Map<String, Object> parsedJson = new JSONParser(res).parseObject();
@@ -65,9 +68,20 @@ public class LoginController {
             session.setAttribute("currentUser", res);
             session.setAttribute("currentAT", parsedJson.get("access_token"));
             session.setAttribute("currentRT", parsedJson.get("refresh_token"));
+            String userProfile = getProfileFromNaver(parsedJson.get("access_token").toString());
+            Map<String,Object> parsedProfile = new JSONParser(userProfile).parseObject();
+            Object temp = parsedProfile.get("response");
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonString = mapper.writeValueAsString(temp);
+            Map<String,Object> parsedProfileRes = new JSONParser(jsonString).parseObject();
+            String userId = parsedProfileRes.get("id").toString();
+
         } else {
             model.addAttribute("res", "Login failed!");
         }
+
+
+
         return "home";
 
     }
@@ -110,5 +124,14 @@ public class LoginController {
         session.invalidate();
         return "redirect:/";
 
+    }
+    @ResponseBody
+    @RequestMapping("/naver/getProfile")
+    public String getProfileFromNaver(String accessToken) throws IOException {
+        // 네이버 로그인 접근 토큰;
+        String apiURL = "https://openapi.naver.com/v1/nid/me";
+        String headerStr = "Bearer " + accessToken; // Bearer 다음에 공백 추가
+        String res = requestToServer(apiURL, headerStr);
+        return res;
     }
 }
