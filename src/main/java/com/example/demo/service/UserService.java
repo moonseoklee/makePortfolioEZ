@@ -5,7 +5,9 @@ import com.example.demo.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -28,5 +30,18 @@ public class UserService {
 
         System.out.println("adduser"+user);
         return userRepository.save(user);
+    }
+
+    public List<String> getSkills(String userId) {
+
+
+        User user= userRepository.findById(userId).orElse(null);
+        List<String> skills =  user.getSkills();
+        return skills;
+    }
+
+    public void delete(String userId, String skill) {
+        User user= userRepository.findById(userId).orElse(null);
+        List<String> skills =  user.getSkills();
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -45,7 +46,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String testNaver(HttpSession session, Model model) throws UnsupportedEncodingException, UnknownHostException {
         System.out.println("aa");
-        String redirectURI = URLEncoder.encode("http://localhost:8080/naver/callback1", "UTF-8");
+        String redirectURI = URLEncoder.encode("http://localhost:8080/callback", "UTF-8");
         SecureRandom random = new SecureRandom();
         String state = new BigInteger(130, random).toString();
         String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -56,11 +57,11 @@ public class LoginController {
         return "/login";
     }
 
-    @RequestMapping("/naver/callback1")
+    @RequestMapping("/callback")
     public String naverCallback1(HttpSession session, HttpServletRequest request, Model model) throws IOException, org.apache.tomcat.util.json.ParseException {
         String code = request.getParameter("code");
         String state = request.getParameter("state");
-        String redirectURI = URLEncoder.encode("http://localhost:8080/naver/callback1", "UTF-8");
+        String redirectURI = URLEncoder.encode("http://localhost:8080/callback", "UTF-8");
         String apiURL;
         apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
         apiURL += "client_id=" + CLIENT_ID;
@@ -90,14 +91,14 @@ public class LoginController {
                 System.out.println("input db");
                 userService.addUser(userId);
             }
-
+            session.setAttribute("userId",userId);
         } else {
             model.addAttribute("res", "Login failed!");
         }
 
 
 
-        return "home";
+        return "callback";
 
     }
 
@@ -149,4 +150,7 @@ public class LoginController {
         String res = requestToServer(apiURL, headerStr);
         return res;
     }
+
+
+
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${session.currentUser ne null}">
+    <h3>이 부분은 로그인한 사용자한테만 보임</h3>
+    <pre th:text="${session.currentUser}"></pre>
+    <a href="/naver/invalidate">로그아웃 (Invalidate Session)</a>
+    <a th:href="${'/naver/getProfile?accessToken=' + session.currentAT}">Get User's Profile</a>
+    <a href="/home">Go to HOme!!!</a>
+</div>
+</body>
+</html>

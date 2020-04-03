@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,15 +13,28 @@
         <a href="/naver/invalidate">로그아웃 (Invalidate Session)</a>
         <a th:href="${'/naver/getProfile?accessToken=' + session.currentAT}">Get User's Profile</a>
     </div>
-    <form class="form-signin" action="/list" method="post">
-        <label for="inputTitle" class="sr-only">Title</label>
-        <input type="text" name="title" id="inputTitle" class="form-control" placeholder="Title" required="" />
-        <label for="inputDetail" class="sr-only">Detail</label>
-        <input type="text" name="detail" id="inputDetail" class="form-control" placeholder="Detail" required="" />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">쓰기</button>
-    </form>
-    <div>
 
-    </div>
+
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+                        <tr th:each="skill : ${skills}">
+                            <td th:text="${skill}" align="left">
+
+                            </td>
+                            <td>
+                                <form action="#" th:action="@{'/delete/{skill}'(skill=${skill})}" th:method="delete" >
+                                    <input type="hidden" name="_method" value="delete" />
+                                    <button type="submit" id="submitButton"> </button>
+                                </form>
+
+                            </td>
+                        </tr>
+
+
+                    </table>
+
+
+
+    <script th:src="@{/js/addForm.js}"></script>
 </body>
 </html>
