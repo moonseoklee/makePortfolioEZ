@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Builder // builder를 사용할수 있게 합니다.
 @Entity // jpa entity임을 알립니다.
@@ -22,5 +23,9 @@ public class User {
     private String id;
     @Column(nullable = false, length = 100) // name column을 명시합니다. 필수이고 길이는 100입니다.
     private String email;
+
+    @Column(name="skills")
+    @ElementCollection(targetClass = String.class)
+    private List<String> skills;
 }
 

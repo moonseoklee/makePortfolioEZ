@@ -2,8 +2,12 @@ package com.example.demo.controller;
 
 
 
+import com.example.demo.domain.User;
+import com.example.demo.domain.UserRepository;
+import com.example.demo.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.json.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -30,6 +34,12 @@ public class LoginController {
 
     private String CLIENT_ID = "_L3yUfmDgCWHvk7vDar5";
     private String CLI_SECRET = "K0m6RtM4Hh";
+
+
+    @Autowired
+    UserService userService;
+
+
 
 
     @RequestMapping("/login")
@@ -75,6 +85,11 @@ public class LoginController {
             String jsonString = mapper.writeValueAsString(temp);
             Map<String,Object> parsedProfileRes = new JSONParser(jsonString).parseObject();
             String userId = parsedProfileRes.get("id").toString();
+
+            if(!userService.findById(userId).isPresent()){
+                System.out.println("input db");
+                userService.addUser(userId);
+            }
 
         } else {
             model.addAttribute("res", "Login failed!");
