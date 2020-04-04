@@ -20,18 +20,35 @@ public class WriteController {
 
 
         ModelAndView modelAndView = new ModelAndView();
-        System.out.println(userService.getSkills(session.getAttribute("userId").toString()));
-        modelAndView.addObject("skills",userService.getSkills(session.getAttribute("userId").toString()));
+        //System.out.println(userService.getPLS(session.getAttribute("userId").toString()));
+        modelAndView.addObject("skills",userService.getPLS(session.getAttribute("userId").toString()));
         // URI location = new URI("/list/"+resource.getIdx());
         modelAndView.setViewName("/home");
         return modelAndView;
     }
 
-    @RequestMapping(value="/delete/{skill}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/delete/{skill}", method = RequestMethod.POST)
     @ResponseBody
-    public ModelAndView delete(@PathVariable String skill,HttpSession session) {
+    public ModelAndView delete(@PathVariable String skill,HttpSession session) throws URISyntaxException {
         userService.delete(session.getAttribute("userId").toString(),skill);
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView = list(session);
+        return modelAndView;
+    }
+    @RequestMapping(value="/deleteAll", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView deleteAll(HttpSession session) throws URISyntaxException {
+        userService.deleteAll(session.getAttribute("userId").toString());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView = list(session);
+        return modelAndView;
+    }
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView update(@RequestParam String skill,HttpSession session) throws URISyntaxException {
+        userService.update(session.getAttribute("userId").toString(),skill);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView = list(session);
         return modelAndView;
     }
 }

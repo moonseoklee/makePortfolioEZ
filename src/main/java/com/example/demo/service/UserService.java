@@ -32,16 +32,36 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<String> getSkills(String userId) {
+    public List<String> getPLS(String userId) {
 
 
         User user= userRepository.findById(userId).orElse(null);
-        List<String> skills =  user.getSkills();
-        return skills;
+        List<String> PLS =  user.getPLS();
+        return PLS;
     }
 
     public void delete(String userId, String skill) {
+        List<String> pls = getPLS(userId);
+        pls.remove(skill);
         User user= userRepository.findById(userId).orElse(null);
-        List<String> skills =  user.getSkills();
+        user.setPLS(pls);
+        userRepository.save(user);
+    }
+
+    public void deleteAll(String userId) {
+        List<String> pls = getPLS(userId);
+        pls.clear();
+        User user= userRepository.findById(userId).orElse(null);
+        user.setPLS(pls);
+        userRepository.save(user);
+    }
+
+    public void update(String userId, String skill) {
+        List<String> pls = getPLS(userId);
+        pls.add(skill);
+        User user= userRepository.findById(userId).orElse(null);
+        user.setPLS(pls);
+        userRepository.save(user);
+        System.out.println(user.getPLS());
     }
 }

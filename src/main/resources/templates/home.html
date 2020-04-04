@@ -24,7 +24,7 @@
                             <td>
                                 <form action="#" th:action="@{'/delete/{skill}'(skill=${skill})}" th:method="delete" >
                                     <input type="hidden" name="_method" value="delete" />
-                                    <button type="submit" id="submitButton"> </button>
+                                    <button type="submit" id="deleteBtn"> </button>
                                 </form>
 
                             </td>
@@ -33,7 +33,18 @@
 
                     </table>
 
+    <div>
 
+        <form action="#" th:action="@{'/update'}" th:method="POST" >
+            <input type="text" name="skill" th:value="${skill}"  />
+            <button type="submit" id="submitBtn">추가</button>
+        </form>
+    </div>
+    <div>
+        <form action="#" th:action="@{'/deleteAll'}" th:method="POST" >
+            <button type="submit" id="deleteAllBtn">전체삭제</button>
+        </form>
+    </div>
 
     <script th:src="@{/js/addForm.js}"></script>
 </body>

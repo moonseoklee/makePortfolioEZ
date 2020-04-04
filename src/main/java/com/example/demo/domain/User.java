@@ -1,9 +1,6 @@
 package com.example.demo.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,15 +16,15 @@ import java.util.Set;
 @Table(name = "User") // 'user' 테이블과 매핑됨을 명시
 public class User {
 
-
-
     @Id
     @Column(nullable = false, unique = true, length = 30) // uid column을 명시합니다. 필수이고 유니크한 필드이며 길이는 30입니다.
     private String id;
+
     @Column(nullable = false, length = 100) // name column을 명시합니다. 필수이고 길이는 100입니다.
     private String email;
 
     @ElementCollection
-    private List<String> skills = new ArrayList<String>();
+    @Setter
+    private List<String> PLS = new ArrayList<String>();
 }
 
