@@ -151,9 +151,6 @@ public class LoginController {
         return res;
     }
 
-    @GetMapping("/sample")
-    public String sample(){
-        return "/portfolio";
-    }
+
 
 }

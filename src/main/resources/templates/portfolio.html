@@ -1,74 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Skip to content
-        Search or jump to…
+    <meta charset="utf-8">
+    <title th:text="${name}"></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-        Pull requests
-        Issues
-        Marketplace
-        Explore
+    <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+    <meta property="og:title" content="">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="">
+    <meta property="og:description" content="">
 
-        @moonseoklee
-        moonseoklee
-        /
-        portfolio
-        1
-        10
-        Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights Settings
-        portfolio/index.html
-        @moonseoklee moonseoklee modify doc
-        473d92c 5 days ago
-        602 lines (527 sloc)  26 KB
+    <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
 
-        <!DOCTYPE html>
-        <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+    <link href="/img/favicon.png" rel="shortcut icon">
 
-        <head>
-            <meta charset="utf-8">
-            <title>이문석</title>
-            <meta content="width=device-width, initial-scale=1.0" name="viewport">
-            <meta content="" name="keywords">
-            <meta content="" name="description">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+          rel="stylesheet">
 
-            <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
-            <meta property="og:title" content="">
-            <meta property="og:image" content="">
-            <meta property="og:url" content="">
-            <meta property="og:site_name" content="">
-            <meta property="og:description" content="">
+    <!-- Bootstrap CSS File -->
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-            <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:site" content="">
-            <meta name="twitter:title" content="">
-            <meta name="twitter:description" content="">
-            <meta name="twitter:image" content="">
+    <!-- Libraries CSS Files -->
+    <link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/lib/animate-css/animate.min.css" rel="stylesheet">
 
-            <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
-            <link href="/img/favicon.png" rel="shortcut icon">
-
-            <!-- Google Fonts -->
-            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
-
-            <!-- Bootstrap CSS File -->
-            <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-            <!-- Libraries CSS Files -->
-            <link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-            <link href="/lib/animate-css/animate.min.css" rel="stylesheet">
-
-            <!-- Main Stylesheet File -->
-            <link href="/css/style.css" rel="stylesheet">
-            <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
-            <!-- =======================================================
-              Theme Name: Imperial
-              Theme URL: https://bootstrapmade.com/imperial-free-onepage-bootstrap-theme/
-              Author: BootstrapMade.com
-              Author URL: https://bootstrapmade.com
-            ======================================================= -->
-        </head>
+    <!-- Main Stylesheet File -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+    <!-- =======================================================
+      Theme Name: Imperial
+      Theme URL: https://bootstrapmade.com/imperial-free-onepage-bootstrap-theme/
+      Author: BootstrapMade.com
+      Author URL: https://bootstrapmade.com
+    ======================================================= -->
+</head>
 
 <body>
 <div id="preloader"></div>
@@ -98,7 +76,7 @@ Header Section
     <div class="container">
 
         <div id="logo" class="pull-left">
-            <a href="#hero"><img src="/img/logo.png" alt="" title="" /></img></a>
+            <a href="#hero"><img src="/img/logo.png" alt="" title=""/></img></a>
             <!-- Uncomment below if you prefer to use a text image -->
             <!--<h1><a href="#hero">Header 1</a></h1>-->
         </div>
@@ -145,7 +123,9 @@ About Section
             <div class="col-md-12">
                 <h3 class="section-title">About Me</h3>
                 <div class="section-title-divider"></div>
-                <p class="section-description"><div style="text-align: center" class="ns">신입 개발자입니다</div></p>
+                <p class="section-description">
+                <div style="text-align: center" class="ns">신입 개발자입니다</div>
+                </p>
             </div>
         </div>
     </div>
@@ -179,29 +159,19 @@ About Section
             <div class="col-md-12">
                 <h3 class="section-title">Skills</h3>
                 <div class="section-title-divider"></div>
-                <p class="section-description"><div style="text-align: center" class="ns">계속 늘어나고 있습니다</div></p>
+                <p class="section-description">
+                <div style="text-align: center" class="ns">계속 늘어나고 있습니다</div>
+                </p>
             </div>
         </div>
 
         <div class="col-md-2 about-content"><h2 class="about-title">Language</h2></div>
         <div class="row">
-            <div class="col-md-2 service-item">
+            <div class="col-md-2 service-item" th:each="skill:${skills}">
                 <div class="service-icon"><img src="https://img.icons8.com/color/48/000000/python.png"></div>
-                <h4 class="service-title"><a href="">Python</a></h4>
+                <h4 class="service-title" th:text="${skill}"><a href=""></a></h4>
             </div>
-            <div class="col-md-2 service-item">
-                <div class="service-icon"><img src="https://img.icons8.com/dusk/48/000000/java-coffee-cup-logo.png"></div>
-                <h4 class="service-title"><a href="">Java</a></h4>
-            </div>
-            <div class="col-md-2 service-item">
-                <div class="service-icon"><img src="https://img.icons8.com/color/48/000000/c-plus-plus-logo.png"></div>
-                <h4 class="service-title"><a href="">C++</a></h4>
-            </div>
-            <div class="col-md-3 service-item">
-                <div class="service-icon"><img src="https://img.icons8.com/ios-filled/48/000000/javascript.png"></div>
-                <h4 class="service-title"><a href="">Javascript</a></h4>
 
-            </div>
 
         </div>
         <div class="col-md-2 about-content"><h2 class="about-title">Framework</h2></div>
@@ -285,7 +255,8 @@ Porfolio Section
 
         <div class="row">
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(static/img/portfolio-1.png);" href="https://github.com/moonseoklee/kugrade">
+                <a class="portfolio-item" style="background-image: url(static/img/portfolio-1.png);"
+                   href="https://github.com/moonseoklee/kugrade">
                     <div class="details">
                         <h4>KUGrade</h4>
                         <span>Django</span>
@@ -296,7 +267,8 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(static/img/portfolio-2.PNG);" href="https://github.com/moonseoklee/bitPrice">
+                <a class="portfolio-item" style="background-image: url(static/img/portfolio-2.PNG);"
+                   href="https://github.com/moonseoklee/bitPrice">
                     <div class="details">
                         <h4>Bitprice</h4>
                         <span>javascript webextension</span>
@@ -307,7 +279,8 @@ Porfolio Section
             </div>
 
             <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(static/img/portfolio-3.PNG);" href="https://github.com/moonseoklee/portfolio">
+                <a class="portfolio-item" style="background-image: url(static/img/portfolio-3.PNG);"
+                   href="https://github.com/moonseoklee/portfolio">
                     <div class="details">
                         <h4>Portfolio</h4>
                         <span>springboot bootstrap</span>
@@ -327,8 +300,6 @@ Porfolio Section
                     </div>
                 </a>
             </div>
-
-
 
 
         </div>
@@ -387,14 +358,17 @@ Team Section
             <div class="col-md-12">
                 <h3 class="section-title">Dev etc</h3>
                 <div class="section-title-divider"></div>
-                <p class="section-description"><div style="text-align: center" class="ns">개발 관련 경험, 클릭하면 설명이 나와요</div></p>
+                <p class="section-description">
+                <div style="text-align: center" class="ns">개발 관련 경험, 클릭하면 설명이 나와요</div>
+                </p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-3">
                 <div class="member">
-                    <div class="pic"> <a href="#layer1" class="btn-example"><img src="src/main/resources/static/img/boj.JPG" alt=""></a>
+                    <div class="pic"><a href="#layer1" class="btn-example"><img
+                            src="src/main/resources/static/img/boj.JPG" alt=""></a>
                         <div id="layer1" class="pop-layer">
                             <div class="pop-container">
                                 <div class="pop-conts">
@@ -403,7 +377,8 @@ Team Section
                                         프로그래밍 문제풀이 사이트에서<br>
                                         300문제 이상을 풀었습니다.<br><br>
                                         Used : Python,C++<br>
-                                        More : <a href="https://www.acmicpc.net/user/winnyiee" title="Pixel perfect">백준 solved list</a>
+                                        More : <a href="https://www.acmicpc.net/user/winnyiee" title="Pixel perfect">백준
+                                            solved list</a>
                                     </p>
 
                                     <div class="btn-r">
@@ -412,7 +387,8 @@ Team Section
                                     <!--// content-->
                                 </div>
                             </div>
-                        </div></div>
+                        </div>
+                    </div>
 
                     <h4 style="color:black;">프로그래밍 문제풀이</h4>
                 </div>
@@ -420,7 +396,8 @@ Team Section
 
             <div class="col-md-3">
                 <div class="member">
-                    <div class="pic"> <a href="#layer2" class="btn-example"><img src="src/main/resources/static/img/programmer.png" alt=""></a>
+                    <div class="pic"><a href="#layer2" class="btn-example"><img
+                            src="src/main/resources/static/img/programmer.png" alt=""></a>
                         <div id="layer2" class="pop-layer">
                             <div class="pop-container">
                                 <div class="pop-conts">
@@ -438,14 +415,16 @@ Team Section
                                     <!--// content-->
                                 </div>
                             </div>
-                        </div></div>
+                        </div>
+                    </div>
 
                     <h4 style="color:black;">인턴</h4>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="member">
-                    <div class="pic"> <a href="#layer3" class="btn-example"><img src="src/main/resources/static/img/lab.png" alt="">
+                    <div class="pic"><a href="#layer3" class="btn-example"><img
+                            src="src/main/resources/static/img/lab.png" alt="">
                     </a>
                         <div id="layer3" class="pop-layer">
                             <div class="pop-container">
@@ -465,14 +444,16 @@ Team Section
                                     <!--// content-->
                                 </div>
                             </div>
-                        </div></div>
+                        </div>
+                    </div>
 
                     <h4 style="color:black;">학부연구생</h4>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="member">
-                    <div class="pic"> <a href="#layer4" class="btn-example"><img src="src/main/resources/static/img/codeclub.png" width="128" alt="">
+                    <div class="pic"><a href="#layer4" class="btn-example"><img
+                            src="src/main/resources/static/img/codeclub.png" width="128" alt="">
                     </a>
                         <div id="layer4" class="pop-layer">
                             <div class="pop-container">
@@ -491,7 +472,8 @@ Team Section
                                     <!--// content-->
                                 </div>
                             </div>
-                        </div></div>
+                        </div>
+                    </div>
 
                     <h4 style="color:black;">SW 교육 봉사</h4>
                 </div>
@@ -536,7 +518,9 @@ Contact Section
             <div class="col-md-12">
                 <h3 class="section-title">Contact Me</h3>
                 <div class="section-title-divider"></div>
-                <p class="section-description"><div style="text-align: center" class="ns">메일 아이콘을 눌러 메일을 보내세요!</div></p>
+                <p class="section-description">
+                <div style="text-align: center" class="ns">메일 아이콘을 눌러 메일을 보내세요!</div>
+                </p>
             </div>
         </div>
 
@@ -565,8 +549,12 @@ Contact Section
                 <div class="form">
                     <!--div id="sendmessage">Your message has been sent. Thank you!</div-->
 
-                    <div class="text-center"><button type="submit" style="background-color:transparent" onclick="location.href='mailto:gwinnyiee@gmail.com'"><img src="./src/main/resources/static/img/gmail.png" alt=""><a href="mailto:gwinnyiee@gmail.com"></a></button></div>
-
+                    <div class="text-center">
+                        <button type="submit" style="background-color:transparent"
+                                onclick="location.href='mailto:gwinnyiee@gmail.com'"><img
+                                src="./src/main/resources/static/img/gmail.png" alt=""><a
+                                href="mailto:gwinnyiee@gmail.com"></a></button>
+                    </div>
 
 
                 </div>
@@ -615,8 +603,6 @@ Footer
 
 <!-- Template Specisifc Custom Javascript File -->
 <script src="/js/custom.js"></script>
-
-
 
 
 </body>
