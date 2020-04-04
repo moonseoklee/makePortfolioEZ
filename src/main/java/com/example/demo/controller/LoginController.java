@@ -43,7 +43,7 @@ public class LoginController {
 
 
 
-    @RequestMapping("/login")
+    @RequestMapping("/")
     public String testNaver(HttpSession session, Model model) throws UnsupportedEncodingException, UnknownHostException {
         System.out.println("aa");
         String redirectURI = URLEncoder.encode("http://localhost:8080/callback", "UTF-8");
@@ -54,7 +54,7 @@ public class LoginController {
                 CLIENT_ID, redirectURI, state);
         session.setAttribute("state", state);
         model.addAttribute("apiURL", apiURL);
-        return "/login";
+        return "/index";
     }
 
     @RequestMapping("/callback")

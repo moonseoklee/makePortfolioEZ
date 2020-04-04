@@ -168,7 +168,8 @@ About Section
         <div class="col-md-2 about-content"><h2 class="about-title">Language</h2></div>
         <div class="row">
             <div class="col-md-2 service-item" th:each="skill:${skills}">
-                <div class="service-icon"><img src="https://img.icons8.com/color/48/000000/python.png"></div>
+
+                <div class="service-icon"><img th:src="@{https://img.icons8.com/color/48/000000/{image}.png(image=${skill})}"></div>
                 <h4 class="service-title" th:text="${skill}"><a href=""></a></h4>
             </div>
 
