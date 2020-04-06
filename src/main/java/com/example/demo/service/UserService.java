@@ -5,6 +5,7 @@ import com.example.demo.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,40 +29,49 @@ public class UserService {
     public User addUser(String userId) {
         User user = User.builder().id(userId).email("aa").build();
 
-        System.out.println("adduser"+user);
+
         return userRepository.save(user);
     }
 
-    public List<String> getPLS(String userId) {
-
-
+    public ArrayList<List> getSkills(String userId) {
         User user= userRepository.findById(userId).orElse(null);
-        List<String> PLS =  user.getPLS();
-        return PLS;
+        List<String> PLs =  user.getPLS();
+        List<String> Dbs =  user.getDbs();
+        ArrayList<List> arr = new ArrayList<List>();
+        arr.add(PLs);
+        arr.add(Dbs);
+        return arr;
     }
 
-    public void delete(String userId, String skill) {
-        List<String> pls = getPLS(userId);
-        pls.remove(skill);
-        User user= userRepository.findById(userId).orElse(null);
-        user.setPLS(pls);
+    public void delete(String category,String userId, String skill) {
+        ArrayList<List> skills = getSkills(userId);
+        User user = userRepository.findById(userId).orElse(null);
+        if(category=="pl") {
+            skills.get(0).remove(skill);
+
+            user.setPLS(skills.get(0));
+        }else if(category=="db"){
+            skills.get(1).remove(skill);
+
+            user.setDbs(skills.get(1));
+        }
         userRepository.save(user);
     }
 
     public void deleteAll(String userId) {
-        List<String> pls = getPLS(userId);
-        pls.clear();
+        ArrayList<List> skills = getSkills(userId);
+        skills.get(0).clear();
         User user= userRepository.findById(userId).orElse(null);
-        user.setPLS(pls);
+        user.setPLS(skills.get(0));
         userRepository.save(user);
     }
 
     public void update(String userId, String skill) {
-        List<String> pls = getPLS(userId);
-        pls.add(skill);
+        ArrayList<List> skills = getSkills(userId);
+        skills.get(0).add(skill);
         User user= userRepository.findById(userId).orElse(null);
-        user.setPLS(pls);
+        user.setPLS(skills.get(0));
         userRepository.save(user);
-        System.out.println(user.getPLS());
+
     }
 }

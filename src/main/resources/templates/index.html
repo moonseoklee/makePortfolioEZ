@@ -52,13 +52,13 @@
 
             <h2><span style="font-size:100px;color:darkgreen">EZ portfolio</span></h2>
             <br><br>
-            <h1>네이버 로그인만 가능해요</h1>
+            <h1 style="font-size: 20px">네이버 로그인만 가능해요</h1>
             <div th:if="${session.currentUser eq null}">
-                <h3>네이버 로그인</h3>
+
                 <a th:href="${apiURL}"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
             </div>
             <div th:if="${session.currentUser ne null}">
-                <a href="/naver/invalidate">로그아웃 (Invalidate Session)</a>
+                <a style="font-size: 20px" href="/naver/invalidate">Logout</a>
             </div>
         </div>
     </div>

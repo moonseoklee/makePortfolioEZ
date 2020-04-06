@@ -26,5 +26,14 @@ public class User {
     @ElementCollection
     @Setter
     private List<String> PLS = new ArrayList<String>();
+
+    @ElementCollection
+    @Setter
+    private List<String> dbs = new ArrayList<String>();
+
+    @ElementCollection
+    @Setter
+    private List<String> frameworks = new ArrayList<String>();
+
 }
 

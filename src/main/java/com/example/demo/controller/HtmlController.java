@@ -22,8 +22,17 @@ public class HtmlController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("name",session.getAttribute("userId").toString());
-        modelAndView.addObject("skills",userService.getPLS(session.getAttribute("userId").toString()));
-        modelAndView.setViewName("/portfolio");
+        modelAndView.addObject("skills",userService.getSkills(session.getAttribute("userId").toString()));
+        modelAndView.setViewName("/home2");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/home2", method = {RequestMethod.GET})
+    public ModelAndView home2(HttpSession session){
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("name",session.getAttribute("userId").toString());
+        //modelAndView.addObject("skills",userService.getPLS(session.getAttribute("userId").toString()));
+        modelAndView.setViewName("/home2");
         return modelAndView;
     }
 

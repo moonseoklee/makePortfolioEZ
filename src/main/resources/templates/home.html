@@ -1,51 +1,138 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
 <html xmlns:th="https://www.thymeleaf.org">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <meta charset="utf-8">
+    <title th:text="포폴만들기"></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="/css/select2.css" rel="stylesheet"/>
+    <script src="/js/select2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#pls").select2();
+        });
+
+    </script>
+
+
+    <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+    <meta property="og:title" content="">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="">
+    <meta property="og:description" content="">
+
+    <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+    <link href="/img/favicon.png" rel="shortcut icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+          rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/lib/animate-css/animate.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+    <!-- =======================================================
+      Theme Name: Imperial
+      Theme URL: https://bootstrapmade.com/imperial-free-onepage-bootstrap-theme/
+      Author: BootstrapMade.com
+      Author URL: https://bootstrapmade.com
+    ======================================================= -->
+
 <body>
-    home!
-    <div th:if="${session.currentUser ne null}">
-        <h3>이 부분은 로그인한 사용자한테만 보임</h3>
-        <pre th:text="${session.currentUser}"></pre>
-        <a href="/naver/invalidate">로그아웃 (Invalidate Session)</a>
-        <a th:href="${'/naver/getProfile?accessToken=' + session.currentAT}">Get User's Profile</a>
+
+<section id="hero">
+
+    <div class="hero-container" style="vertical-align: top">
+        <div style="width: 15%;float:left;margin-top: 20px;">
+            <span style="text-align:left;margin-left: 10px;text-shadow: 0 0 10px black;font-size:20px;color:darkgreen;/* margin-top: 500px; */">EZ portfolio</span>
+
+        </div>
+        <div style="width: 15%;float:right;margin-top: 20px;">
+        <span style="margin-left: 10px;font-size:20px;color:darkgreen;"><div th:if="${session.currentUser ne null}">
+                <a style="font-size: 20px" href="/naver/invalidate">Logout</a>
+
+        </div></span></div>
+
+       <div class="container wow fadeInUp" style="margin-top: 100px;text-align:left;">
+               <label for="pls">Choose PL:</label>
+
+               <select id="pls">
+                   <option value="python">python</option>
+                   <option value="java">java</option>
+                   <option value="cpp">C++</option>
+                   <option value="c">C</option>
+                   <option value="go">go</option>
+                   <option value="js">javascript</option>
+               </select>
+               <button type="submit" class="submitBtn">추가</button>
+                <script>
+                    $('.submitBtn').click(function() {
+                        var selected = $('#pls option:selected').html();
+                        $.ajax({
+                            type: "POST",
+                            url: "/update", // the method we are calling
+                            data: {data:selected},
+
+                            success: function (result) {
+                                location.reload();
+
+                            },
+                            error: function (result) {
+                                alert('Oh no :(');
+                            }
+                        });
+                    });
+                </script>
+
+               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+                   <tr th:each="skill : ${skills}">
+                       <td th:text="${skill}" align="left">
+
+                       </td>
+                       <td>
+                           <form action="#" th:action="@{'/delete/pl/{skill}'(skill=${skill})}" th:method="delete" >
+                               <input type="hidden" name="_method" value="delete" />
+                               <button type="submit" id="deleteBtn">지우기</button>
+                           </form>
+
+                       </td>
+                   </tr>
+
+
+               </table>
+           </div>
     </div>
+</section>
 
-
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-
-                        <tr th:each="skill : ${skills}">
-                            <td th:text="${skill}" align="left">
-
-                            </td>
-                            <td>
-                                <form action="#" th:action="@{'/delete/{skill}'(skill=${skill})}" th:method="delete" >
-                                    <input type="hidden" name="_method" value="delete" />
-                                    <button type="submit" id="deleteBtn"> </button>
-                                </form>
-
-                            </td>
-                        </tr>
-
-
-                    </table>
-
-    <div>
-
-        <form action="#" th:action="@{'/update'}" th:method="POST" >
-            <input type="text" name="skill" th:value="${skill}"  />
-            <button type="submit" id="submitBtn">추가</button>
-        </form>
-    </div>
-    <div>
-        <form action="#" th:action="@{'/deleteAll'}" th:method="POST" >
-            <button type="submit" id="deleteAllBtn">전체삭제</button>
-        </form>
-    </div>
-
-    <script th:src="@{/js/addForm.js}"></script>
 </body>
+<script>
+    var add = function (select_obj){
+        $("")
+
+    };
+</script>
+</html>
+</title>
+</head>
+
 </html>
