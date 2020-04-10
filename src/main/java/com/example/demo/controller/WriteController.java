@@ -22,9 +22,13 @@ public class WriteController {
 
 
         ModelAndView modelAndView = new ModelAndView();
+        //System.out.println(userService.getSkills(session.getAttribute("userId").toString()).get(0));
         //System.out.println(userService.getPLS(session.getAttribute("userId").toString()));
+        modelAndView.clear();
+
         modelAndView.addObject("skills",userService.getSkills(session.getAttribute("userId").toString()).get(0));
         modelAndView.addObject("dbs",userService.getSkills(session.getAttribute("userId").toString()).get(1));
+        System.out.println(modelAndView.getModel());
         // URI location = new URI("/list/"+resource.getIdx());
         modelAndView.setViewName("/home");
         return modelAndView;

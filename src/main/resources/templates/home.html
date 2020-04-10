@@ -63,13 +63,14 @@
 
     <div class="hero-container" style="vertical-align: top">
         <div style="width: 15%;float:left;margin-top: 20px;">
-            <span style="text-align:left;margin-left: 10px;text-shadow: 0 0 10px black;font-size:20px;color:darkgreen;/* margin-top: 500px; */">EZ portfolio</span>
+            <span style="text-align:left;margin-left: 10px;text-shadow: 0 0 10px black;font-size:20px;color:darkgreen;/* margin-top: 500px; */"><a href="/home">EZ portfolio</a></span>
 
         </div>
         <div style="width: 15%;float:right;margin-top: 20px;">
         <span style="margin-left: 10px;font-size:20px;color:darkgreen;"><div th:if="${session.currentUser ne null}">
                 <a style="font-size: 20px" href="/naver/invalidate">Logout</a>
-
+                <br>
+                <a style="font-size: 20px;color:darkgreen;" href="/sample">show result</a>
         </div></span></div>
 
        <div class="container wow fadeInUp" style="margin-top: 100px;text-align:left;">
