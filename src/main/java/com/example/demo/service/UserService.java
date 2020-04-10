@@ -37,9 +37,13 @@ public class UserService {
         User user= userRepository.findById(userId).orElse(null);
         List<String> PLs =  user.getPLS();
         List<String> Dbs =  user.getDbs();
+        List<String> Frs =  user.getFrameworks();
+        List<String> Etcs =  user.getEtcs();
         ArrayList<List> arr = new ArrayList<List>();
         arr.add(PLs);
         arr.add(Dbs);
+        arr.add(Frs);
+        arr.add(Etcs);
         return arr;
     }
 
@@ -54,6 +58,14 @@ public class UserService {
             skills.get(1).remove(skill);
 
             user.setDbs(skills.get(1));
+        }else if(category=="fr"){
+            skills.get(2).remove(skill);
+
+            user.setFrameworks(skills.get(2));
+        }else if(category=="etc"){
+            skills.get(3).remove(skill);
+
+            user.setEtcs(skills.get(3));
         }
         userRepository.save(user);
     }
@@ -66,11 +78,25 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void update(String userId, String skill) {
+    public void update(String category,String userId, String skill) {
         ArrayList<List> skills = getSkills(userId);
-        skills.get(0).add(skill);
         User user= userRepository.findById(userId).orElse(null);
-        user.setPLS(skills.get(0));
+        System.out.println(skills+skill+category);
+        if(category=="pls") {
+            skills.get(0).add(skill);
+            user.setPLS(skills.get(0));
+        }else if(category=="dbs") {
+            skills.get(1).add(skill);
+            user.setDbs(skills.get(1));
+        }else if(category=="frs") {
+            skills.get(2).add(skill);
+            user.setFrameworks(skills.get(2));
+        }else if(category=="etc") {
+            skills.get(3).add(skill);
+            user.setFrameworks(skills.get(3));
+        }
+
+
         userRepository.save(user);
 
     }

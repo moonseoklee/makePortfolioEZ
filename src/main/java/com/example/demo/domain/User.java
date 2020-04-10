@@ -35,5 +35,9 @@ public class User {
     @Setter
     private List<String> frameworks = new ArrayList<String>();
 
+    @ElementCollection
+    @Setter
+    private List<String> etcs = new ArrayList<String>();
+
 }
 

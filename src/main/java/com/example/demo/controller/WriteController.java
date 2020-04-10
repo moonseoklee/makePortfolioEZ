@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
 
-@RestController
+@Controller
 public class WriteController {
 
     @Autowired
@@ -26,8 +27,11 @@ public class WriteController {
         //System.out.println(userService.getPLS(session.getAttribute("userId").toString()));
         modelAndView.clear();
 
-        modelAndView.addObject("skills",userService.getSkills(session.getAttribute("userId").toString()).get(0));
+        modelAndView.addObject("pls",userService.getSkills(session.getAttribute("userId").toString()).get(0));
         modelAndView.addObject("dbs",userService.getSkills(session.getAttribute("userId").toString()).get(1));
+        modelAndView.addObject("frs",userService.getSkills(session.getAttribute("userId").toString()).get(2));
+        modelAndView.addObject("etcs",userService.getSkills(session.getAttribute("userId").toString()).get(3));
+        //modelAndView.addObject("etcs",userService.getSkills(session.getAttribute("userId").toString()).get(3));
         System.out.println(modelAndView.getModel());
         // URI location = new URI("/list/"+resource.getIdx());
         modelAndView.setViewName("/home");
@@ -35,35 +39,68 @@ public class WriteController {
     }
 
     @RequestMapping(value="/delete/pl/{skill}", method = RequestMethod.POST)
-    @ResponseBody
-    public ModelAndView deletepl(@PathVariable String skill,HttpSession session) throws URISyntaxException {
+    public String deletepl(@PathVariable String skill,HttpSession session) throws URISyntaxException {
         userService.delete("pl",session.getAttribute("userId").toString(),skill);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView = list(session);
-        return modelAndView;
+
+        return "redirect:/home";
     }
     @RequestMapping(value="/delete/db/{skill}", method = RequestMethod.POST)
-    @ResponseBody
-    public ModelAndView deletedb(@PathVariable String skill,HttpSession session) throws URISyntaxException {
+    public String deletedb(@PathVariable String skill,HttpSession session) throws URISyntaxException {
         userService.delete("db",session.getAttribute("userId").toString(),skill);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView = list(session);
-        return modelAndView;
+
+        return "redirect:/home";
+    }
+    @RequestMapping(value="/delete/framework/{skill}", method = RequestMethod.POST)
+    public String deleteFramework(@PathVariable String skill,HttpSession session) throws URISyntaxException {
+        userService.delete("fr",session.getAttribute("userId").toString(),skill);
+
+        return "redirect:/home";
     }
     @RequestMapping(value="/deleteAllpl", method = RequestMethod.POST)
-    @ResponseBody
-    public ModelAndView deleteAll(HttpSession session) throws URISyntaxException {
+    public String deleteAll(HttpSession session) throws URISyntaxException {
         userService.deleteAll(session.getAttribute("userId").toString());
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView = list(session);
-        return modelAndView;
+
+        return"redirect:/home";
     }
-    @RequestMapping(value="/update", method = RequestMethod.POST)
+    @RequestMapping(value="/updatepl", method = RequestMethod.POST)
     @ResponseBody
-    public ModelAndView update(HttpServletRequest request, HttpSession session) throws URISyntaxException {
+    public ModelAndView updatepl(HttpServletRequest request, HttpSession session) throws URISyntaxException {
         String skill = request.getParameter("data");
 
-        userService.update(session.getAttribute("userId").toString(),skill);
+        userService.update("pls",session.getAttribute("userId").toString(),skill);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView = list(session);
+
+        return modelAndView;
+    }
+    @RequestMapping(value="/updatedb", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView updatedb(HttpServletRequest request, HttpSession session) throws URISyntaxException {
+        String skill = request.getParameter("data");
+
+        userService.update("dbs",session.getAttribute("userId").toString(),skill);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView = list(session);
+
+        return modelAndView;
+    }
+    @RequestMapping(value="/updatefr", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView updatefr(HttpServletRequest request, HttpSession session) throws URISyntaxException {
+        String skill = request.getParameter("data");
+
+        userService.update("frs",session.getAttribute("userId").toString(),skill);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView = list(session);
+
+        return modelAndView;
+    }
+    @RequestMapping(value="/updateetc", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView updateetc(HttpServletRequest request, HttpSession session) throws URISyntaxException {
+        String skill = request.getParameter("data");
+
+        userService.update("etc",session.getAttribute("userId").toString(),skill);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView = list(session);
 
