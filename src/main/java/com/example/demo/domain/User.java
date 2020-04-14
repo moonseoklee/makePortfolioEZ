@@ -20,8 +20,14 @@ public class User {
     @Column(nullable = false, unique = true, length = 30) // uid column을 명시합니다. 필수이고 유니크한 필드이며 길이는 30입니다.
     private String id;
 
+
+
     @Column(nullable = false, length = 100) // name column을 명시합니다. 필수이고 길이는 100입니다.
     private String email;
+
+    @Column
+    @Setter
+    private  String name;
 
     @ElementCollection
     @Setter

@@ -30,7 +30,8 @@ public class WriteController {
         modelAndView.addObject("pls",userService.getSkills(session.getAttribute("userId").toString()).get(0));
         modelAndView.addObject("dbs",userService.getSkills(session.getAttribute("userId").toString()).get(1));
         modelAndView.addObject("frs",userService.getSkills(session.getAttribute("userId").toString()).get(2));
-        modelAndView.addObject("etcs",userService.getSkills(session.getAttribute("userId").toString()).get(3));
+        modelAndView.addObject("etc",userService.getSkills(session.getAttribute("userId").toString()).get(3));
+        modelAndView.addObject("name",userService.getName(session.getAttribute("userId").toString()));
         //modelAndView.addObject("etcs",userService.getSkills(session.getAttribute("userId").toString()).get(3));
         System.out.println(modelAndView.getModel());
         // URI location = new URI("/list/"+resource.getIdx());
@@ -53,6 +54,12 @@ public class WriteController {
     @RequestMapping(value="/delete/framework/{skill}", method = RequestMethod.POST)
     public String deleteFramework(@PathVariable String skill,HttpSession session) throws URISyntaxException {
         userService.delete("fr",session.getAttribute("userId").toString(),skill);
+
+        return "redirect:/home";
+    }
+    @RequestMapping(value="/delete/etc/{skill}", method = RequestMethod.POST)
+    public String deleteEtc(@PathVariable String skill,HttpSession session) throws URISyntaxException {
+        userService.delete("etc",session.getAttribute("userId").toString(),skill);
 
         return "redirect:/home";
     }
@@ -101,6 +108,17 @@ public class WriteController {
         String skill = request.getParameter("data");
 
         userService.update("etc",session.getAttribute("userId").toString(),skill);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView = list(session);
+
+        return modelAndView;
+    }
+    @RequestMapping(value="/updatename", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView updatename(@RequestParam("name")String name, HttpSession session) throws URISyntaxException {
+
+
+        userService.updateName(name,session.getAttribute("userId").toString());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView = list(session);
 

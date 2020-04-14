@@ -21,7 +21,7 @@ public class HtmlController {
     public ModelAndView sample(HttpSession session){
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("name",session.getAttribute("userId").toString());
+        modelAndView.addObject("name",userService.getName(session.getAttribute("userId").toString()));
         modelAndView.addObject("skills",userService.getSkills(session.getAttribute("userId").toString()));
         modelAndView.setViewName("/portfolio");
         return modelAndView;

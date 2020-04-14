@@ -39,6 +39,7 @@
     <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
     <link href="/img/favicon.png" rel="shortcut icon">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
           rel="stylesheet">
@@ -76,8 +77,8 @@
                 <a style="font-size: 20px;color:darkgreen;" href="/sample">show result</a>
         </div></span></div>
 
-       <div class="container wow fadeInUp" style="margin-top: 100px;text-align:left;">
-               <label for="pls">Choose PL:</label>
+       <div class="col-sm-2" style="margin-top: 100px;text-align:left;">
+               <label for="pls">PL:</label>
 
                <select id="pls">
                    <option value="python">python</option>
@@ -87,7 +88,7 @@
                    <option value="go">go</option>
                    <option value="js">javascript</option>
                </select>
-               <button type="submit" class="plsubmitBtn">추가</button>
+               <button type="submit" class="plsubmitBtn"><i class="fa fa-plus"></i></button>
                 <script>
                     $('.plsubmitBtn').click(function() {
                         var selected = $('#pls option:selected').html();
@@ -107,7 +108,7 @@
                     });
                 </script>
 
-               <table width="100%" border="0" cellpadding="0" cellspacing="0">
+               <table width="50%" border="0" cellpadding="0" cellspacing="0">
 
                    <tr th:each="skill : ${pls}">
                        <td th:text="${skill}" align="left">
@@ -116,7 +117,7 @@
                        <td>
                            <form action="#" th:action="@{'/delete/pl/{skill}'(skill=${skill})}" th:method="delete" >
                                <input type="hidden" name="_method" value="delete" />
-                               <button type="submit" id="deleteBtn">지우기</button>
+                               <button type="submit" id="deleteBtn"><i class="fa fa-trash"></i></button>
                            </form>
 
                        </td>
@@ -125,8 +126,8 @@
 
                </table>
            </div>
-        <div class="container wow fadeInUp" style="margin-top: 100px;text-align:left;">
-            <label for="dbs">Choose PL:</label>
+        <div class="col-sm-2" style="margin-top: 100px;text-align:left;">
+            <label for="dbs">DB:</label>
 
             <select id="dbs">
                 <option value="Oracle">Oracle</option>
@@ -136,7 +137,7 @@
                 <option value="PostgreSQL">PostgreSQL</option>
                 <option value="Elasticsearch">Elasticsearch</option>
             </select>
-            <button type="submit" class="dbsubmitBtn">추가</button>
+            <button type="submit" class="dbsubmitBtn"><i class="fa fa-plus"></i></button>
             <script>
                 $('.dbsubmitBtn').click(function() {
                     var selected = $('#dbs option:selected').html();
@@ -156,16 +157,16 @@
                 });
             </script>
 
-            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <table width="50%" border="0" cellpadding="0" cellspacing="0">
 
                 <tr th:each="skill : ${dbs}">
-                    <td th:text="${skill}" align="left">
+                    <td width="263px" th:text="${skill}" align="left">
 
                     </td>
                     <td>
                         <form action="#" th:action="@{'/delete/db/{skill}'(skill=${skill})}" th:method="delete" >
                             <input type="hidden" name="_method" value="delete" />
-                            <button type="submit" id="deleteDB">지우기</button>
+                            <button type="submit" id="deleteDB"><i class="fa fa-trash"></i></button>
                         </form>
 
                     </td>
@@ -174,14 +175,14 @@
 
             </table>
         </div>
-        <div class="container wow fadeInUp" style="margin-top: 100px;text-align:left;">
-            <label for="frameworks">Choose PL:</label>
+        <div class="col-sm-2" style="margin-top: 100px;text-align:left;">
+            <label for="frameworks">Framework:</label>
             <select id="frameworks">
                 <option value="spring">Spring</option>
                 <option value="springboot">Springboot</option>
                 <option value="django">Django</option>
             </select>
-            <button type="submit" class="frsubmitbtn">추가</button>
+            <button type="submit" class="frsubmitbtn"><i class="fa fa-plus"></i></button>
             <script>
                 $('.frsubmitbtn').click(function() {
                     var selected = $('#frameworks option:selected').html();
@@ -201,16 +202,16 @@
                 });
             </script>
 
-            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <table width="50%" border="0" cellpadding="0" cellspacing="0">
 
                 <tr th:each="skill : ${frs}">
-                    <td th:text="${skill}" align="left">
+                    <td width="263px" th:text="${skill}" align="left">
 
                     </td>
                     <td>
                         <form action="#" th:action="@{'/delete/framework/{skill}'(skill=${skill})}" th:method="delete" >
                             <input type="hidden" name="_method" value="delete" />
-                            <button type="submit" id="deleteFrs">지우기</button>
+                            <button type="submit" id="deleteFrs"><i class="fa fa-trash"></i></button>
                         </form>
 
                     </td>
@@ -219,14 +220,14 @@
 
             </table>
         </div>
-        <div class="container wow fadeInUp" style="margin-top: 100px;text-align:left;">
-            <label for="etcs">Choose PL:</label>
+        <div class="col-sm-2" style="margin-top: 100px;text-align:left;">
+            <label for="etcs">Etcs:</label>
             <select id="etcs">
-                <option value="spring">Spring</option>
-                <option value="springboot">Springboot</option>
-                <option value="django">Django</option>
+                <option value="git">Git</option>
+                <option value="docker">Docker</option>
+                <option value="Azure">Azure</option>
             </select>
-            <button type="submit" class="frsubmitbtn">추가</button>
+            <button type="submit" class="etcsubmitbtn"><i class="fa fa-plus"></i></button>
             <script>
                 $('.etcsubmitbtn').click(function() {
                     var selected = $('#etcs option:selected').html();
@@ -246,25 +247,32 @@
                 });
             </script>
 
-            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <table width="50%" border="0" cellpadding="0" cellspacing="0">
 
                 <tr th:each="skill : ${etc}">
                     <td th:text="${skill}" align="left">
-
                     </td>
                     <td>
                         <form action="#" th:action="@{'/delete/etc/{skill}'(skill=${skill})}" th:method="delete" >
                             <input type="hidden" name="_method" value="delete" />
-                            <button type="submit" id="deleteEtc">지우기</button>
+                            <button type="submit" id="deleteEtc"><i class="fa fa-trash"></i></button>
                         </form>
-
                     </td>
+
                 </tr>
 
 
             </table>
         </div>
+        <div class="col-sm-7">
+            <h4>What's your name?</h4>
+            <form th:action="@{'/updatename'}" method="post" >
+                <input type="text" name="name" th:value="${name}" />
+                <button type="submit" id="updatename"><i class="fa fa-refresh"></i></button>
+            </form>
+        </div>
     </div>
+
 </section>
 
 </body>

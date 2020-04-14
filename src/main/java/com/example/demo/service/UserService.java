@@ -46,6 +46,11 @@ public class UserService {
         arr.add(Etcs);
         return arr;
     }
+    public String getName(String userId) {
+        User user= userRepository.findById(userId).orElse(null);
+
+        return user.getName();
+    }
 
     public void delete(String category,String userId, String skill) {
         ArrayList<List> skills = getSkills(userId);
@@ -77,7 +82,11 @@ public class UserService {
         user.setPLS(skills.get(0));
         userRepository.save(user);
     }
-
+    public void updateName(String name,String userId){
+        User user= userRepository.findById(userId).orElse(null);
+        user.setName(name);
+        userRepository.save(user);
+    }
     public void update(String category,String userId, String skill) {
         ArrayList<List> skills = getSkills(userId);
         User user= userRepository.findById(userId).orElse(null);
@@ -93,7 +102,7 @@ public class UserService {
             user.setFrameworks(skills.get(2));
         }else if(category=="etc") {
             skills.get(3).add(skill);
-            user.setFrameworks(skills.get(3));
+            user.setEtcs(skills.get(3));
         }
 
 
