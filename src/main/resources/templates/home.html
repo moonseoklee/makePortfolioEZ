@@ -264,11 +264,20 @@
 
             </table>
         </div>
-        <div class="col-sm-7">
+        <br>
+        <br>
+        <div class="col-sm-5" style="padding-top: 20px">
             <h4>What's your name?</h4>
             <form th:action="@{'/updatename'}" method="post" >
                 <input type="text" name="name" th:value="${name}" />
                 <button type="submit" id="updatename"><i class="fa fa-refresh"></i></button>
+            </form>
+        </div>
+        <div class="col-sm-5" style="padding-top: 20px">
+            <h4>Who are u?</h4>
+            <form th:action="@{'/updatedescription'}" method="post" >
+                <textarea name="des" th:placeholder="${des}" ></textarea>
+                <button type="submit" id="updatedescription"><i class="fa fa-refresh"></i></button>
             </form>
         </div>
     </div>
@@ -276,12 +285,7 @@
 </section>
 
 </body>
-<script>
-    var add = function (select_obj){
-        $("")
 
-    };
-</script>
 </html>
 </title>
 </head>

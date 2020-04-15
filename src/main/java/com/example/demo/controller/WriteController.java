@@ -32,6 +32,7 @@ public class WriteController {
         modelAndView.addObject("frs",userService.getSkills(session.getAttribute("userId").toString()).get(2));
         modelAndView.addObject("etc",userService.getSkills(session.getAttribute("userId").toString()).get(3));
         modelAndView.addObject("name",userService.getName(session.getAttribute("userId").toString()));
+        modelAndView.addObject("des",userService.getDescription(session.getAttribute("userId").toString()));
         //modelAndView.addObject("etcs",userService.getSkills(session.getAttribute("userId").toString()).get(3));
         System.out.println(modelAndView.getModel());
         // URI location = new URI("/list/"+resource.getIdx());
@@ -119,6 +120,18 @@ public class WriteController {
 
 
         userService.updateName(name,session.getAttribute("userId").toString());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView = list(session);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/updatedescription", method = RequestMethod.POST)
+    @ResponseBody
+    public ModelAndView updatedescription(@RequestParam("des")String des, HttpSession session) throws URISyntaxException {
+
+
+        userService.updateDescription(des,session.getAttribute("userId").toString());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView = list(session);
 

@@ -29,6 +29,10 @@ public class User {
     @Setter
     private  String name;
 
+    @Column
+    @Setter
+    private  String description;
+
     @ElementCollection
     @Setter
     private List<String> PLS = new ArrayList<String>();

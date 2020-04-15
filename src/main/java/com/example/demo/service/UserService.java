@@ -109,4 +109,18 @@ public class UserService {
         userRepository.save(user);
 
     }
+
+    public void updateDescription(String des, String userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        user.setDescription(des);
+
+        userRepository.save(user);
+
+    }
+
+    public String getDescription(String userId) {
+        User user = userRepository.findById(userId).orElse(null);
+
+        return user.getDescription();
+    }
 }
