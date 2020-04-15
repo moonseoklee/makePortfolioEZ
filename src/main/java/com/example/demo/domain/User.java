@@ -25,6 +25,9 @@ public class User {
     @Column(nullable = false, length = 100) // name column을 명시합니다. 필수이고 길이는 100입니다.
     private String email;
 
+    @Transient
+    private List<Project> projects;
+
     @Column
     @Setter
     private  String name;

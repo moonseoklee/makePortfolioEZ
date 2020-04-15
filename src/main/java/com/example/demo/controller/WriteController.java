@@ -33,6 +33,7 @@ public class WriteController {
         modelAndView.addObject("etc",userService.getSkills(session.getAttribute("userId").toString()).get(3));
         modelAndView.addObject("name",userService.getName(session.getAttribute("userId").toString()));
         modelAndView.addObject("des",userService.getDescription(session.getAttribute("userId").toString()));
+
         //modelAndView.addObject("etcs",userService.getSkills(session.getAttribute("userId").toString()).get(3));
         System.out.println(modelAndView.getModel());
         // URI location = new URI("/list/"+resource.getIdx());
