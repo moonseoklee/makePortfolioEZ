@@ -35,4 +35,10 @@ public class ProjectsController {
         return modelAndView;
 
     }
+    @RequestMapping(value="/deleteproject", method = RequestMethod.POST)
+    public String deleteProject(HttpServletRequest request,HttpSession session) throws URISyntaxException {
+        projectsService.deleteProject(request.getParameter("id"));
+
+        return"redirect:/home";
+    }
 }

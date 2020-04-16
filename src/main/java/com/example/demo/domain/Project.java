@@ -2,10 +2,7 @@ package com.example.demo.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Builder // builder를 사용할수 있게 합니다.
 @Entity // jpa entity임을 알립니다.
@@ -15,7 +12,8 @@ import javax.persistence.Table;
 @Table(name = "Project")
 public class Project {
     @Id
-    private String id;
+    @GeneratedValue
+    private Long id;
 
     @Column
     @Setter

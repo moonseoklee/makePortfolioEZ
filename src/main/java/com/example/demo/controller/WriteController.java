@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.User;
+import com.example.demo.service.ProjectsService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,13 +11,19 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.net.URISyntaxException;
+import java.security.interfaces.DSAParams;
+import java.util.ArrayList;
 
 @Controller
 public class WriteController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ProjectsService projectService;
 
     @RequestMapping(value = "/home", method = {RequestMethod.POST,RequestMethod.GET})
     public ModelAndView list(HttpSession session) throws URISyntaxException {
@@ -26,13 +33,18 @@ public class WriteController {
         //System.out.println(userService.getSkills(session.getAttribute("userId").toString()).get(0));
         //System.out.println(userService.getPLS(session.getAttribute("userId").toString()));
         modelAndView.clear();
+        User user = userService.findById(session.getAttribute("userId").toString()).orElse(null);
 
-        modelAndView.addObject("pls",userService.getSkills(session.getAttribute("userId").toString()).get(0));
-        modelAndView.addObject("dbs",userService.getSkills(session.getAttribute("userId").toString()).get(1));
-        modelAndView.addObject("frs",userService.getSkills(session.getAttribute("userId").toString()).get(2));
-        modelAndView.addObject("etc",userService.getSkills(session.getAttribute("userId").toString()).get(3));
-        modelAndView.addObject("name",userService.getName(session.getAttribute("userId").toString()));
-        modelAndView.addObject("des",userService.getDescription(session.getAttribute("userId").toString()));
+        System.out.println(user+"projects");
+        ArrayList arr = userService.getSkills(session.getAttribute("userId").toString());
+        modelAndView.addObject("pls",user.getPLS());
+        modelAndView.addObject("dbs",user.getDbs());
+        modelAndView.addObject("frs",user.getFrameworks());
+        modelAndView.addObject("etc",user.getEtcs());
+        modelAndView.addObject("name",user.getName());
+        modelAndView.addObject("des",user.getDescription());
+
+        modelAndView.addObject("projects",user.getProjects());
 
         //modelAndView.addObject("etcs",userService.getSkills(session.getAttribute("userId").toString()).get(3));
         System.out.println(modelAndView.getModel());

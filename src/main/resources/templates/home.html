@@ -264,8 +264,7 @@
 
             </table>
         </div>
-        <br>
-        <br>
+        <div>
         <div class="col-sm-5" style="padding-top: 20px">
             <h4>What's your name?</h4>
             <form th:action="@{'/updatename'}" method="post" >
@@ -280,6 +279,31 @@
                 <button type="submit" id="updatedescription"><i class="fa fa-refresh"></i></button>
             </form>
         </div>
+
+        </div>
+        <div class="col-sm-5" style="padding-top: 20px">
+            <h4>Projects</h4>
+            <form th:action="@{'/updateproject'}" method="post" >
+                <input type="text" name="projectTitle" th:value="프로젝트명" />
+                <textarea name="projectDescription" th:placeholder="프로젝트설명" ></textarea>
+                <button type="submit" id="updateproject"><i class="fa fa-refresh"></i></button>
+            </form>
+            <table>
+            <tr th:each="project : ${projects}">
+                <td th:text="${project.getTitle()}" align="left">
+                </td>
+                <td>
+                    <form action="#" th:action="@{'/deleteproject'(id=${project.getId()})}" th:method="delete" >
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" id="deleteProject"><i class="fa fa-trash"></i></button>
+                    </form>
+                </td>
+
+            </tr>
+            </table>
+        </div>
+
+
     </div>
 
 </section>

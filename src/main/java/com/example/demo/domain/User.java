@@ -16,6 +16,7 @@ import java.util.Set;
 @Table(name = "User") // 'user' 테이블과 매핑됨을 명시
 public class User {
 
+
     @Id
     @Column(nullable = false, unique = true, length = 30) // uid column을 명시합니다. 필수이고 유니크한 필드이며 길이는 30입니다.
     private String id;
@@ -26,6 +27,7 @@ public class User {
     private String email;
 
     @Transient
+    @Setter
     private List<Project> projects;
 
     @Column

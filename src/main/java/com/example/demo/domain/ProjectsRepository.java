@@ -7,6 +7,6 @@ import java.util.List;
 
 @Transactional
 
-public interface ProjectsRepository  extends CrudRepository<Project,String> {
+public interface ProjectsRepository  extends CrudRepository<Project,Long> {
     List<Project> findAllByUserId(String userId);
 }

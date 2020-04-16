@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.ProjectsRepository;
 import com.example.demo.domain.User;
 import com.example.demo.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,18 @@ public class UserService {
 
 
     private UserRepository userRepository;
+    private ProjectsRepository projectsRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, ProjectsRepository projectsRepository){
+        this.projectsRepository = projectsRepository;
         this.userRepository = userRepository;
     }
 
 
     public Optional<User> findById(String userId){
-
+        User user = userRepository.findById(userId).orElse(null);
+        user.setProjects(projectsRepository.findAllByUserId(userId));
         return userRepository.findById(userId);
     }
     public User addUser(String userId) {
