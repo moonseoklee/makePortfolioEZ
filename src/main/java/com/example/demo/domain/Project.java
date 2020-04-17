@@ -25,5 +25,9 @@ public class Project {
 
     @Column
     @Setter
+    private String gitUrl;
+
+    @Column
+    @Setter
     private String description;
 }

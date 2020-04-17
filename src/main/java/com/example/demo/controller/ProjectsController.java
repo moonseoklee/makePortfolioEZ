@@ -26,8 +26,8 @@ public class ProjectsController {
     public ModelAndView updateProject(HttpServletRequest request, HttpSession session) throws URISyntaxException {
         String title = request.getParameter("projectTitle");
         String description = request.getParameter("projectDescription");
-
-        projectsService.update(session.getAttribute("userId").toString(),title,description);
+        String gitUrl = request.getParameter("projectUrl");
+        projectsService.update(session.getAttribute("userId").toString(),title,description,gitUrl);
 
         ModelAndView modelAndView;
         modelAndView = writeController.list(session);

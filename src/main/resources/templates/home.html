@@ -285,6 +285,7 @@
             <h4>Projects</h4>
             <form th:action="@{'/updateproject'}" method="post" >
                 <input type="text" name="projectTitle" th:value="프로젝트명" />
+                <input type="text" name="projectUrl" th:value="gitRepo" />
                 <textarea name="projectDescription" th:placeholder="프로젝트설명" ></textarea>
                 <button type="submit" id="updateproject"><i class="fa fa-refresh"></i></button>
             </form>

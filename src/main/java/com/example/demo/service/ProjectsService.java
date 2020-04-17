@@ -25,10 +25,10 @@ public class ProjectsService {
 
 
 
-    public void update(String userId, String title, String description) {
+    public void update(String userId, String title, String description,String url) {
         System.out.println(title+description);
         Project project = new Project();
-        project = project.builder().userId(userId).title(title).description(description).build();
+        project = project.builder().userId(userId).title(title).description(description).gitUrl(url).build();
         projectsRepository.save(project);
     }
 

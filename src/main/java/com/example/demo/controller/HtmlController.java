@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,12 @@ public class HtmlController {
 
     @RequestMapping(value = "/sample", method = {RequestMethod.POST,RequestMethod.GET})
     public ModelAndView sample(HttpSession session){
-
+        User user = userService.findById(session.getAttribute("userId").toString()).orElse(null);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("name",userService.getName(session.getAttribute("userId").toString()));
+        modelAndView.addObject("name",user.getName());
         modelAndView.addObject("skills",userService.getSkills(session.getAttribute("userId").toString()));
-        modelAndView.addObject("des",userService.getDescription(session.getAttribute("userId").toString()));
+        modelAndView.addObject("des",user.getDescription());
+        modelAndView.addObject("projects",user.getProjects());
         modelAndView.setViewName("/portfolio");
         return modelAndView;
     }

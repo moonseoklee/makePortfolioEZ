@@ -241,19 +241,18 @@ Porfolio Section
         </div>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3" th:each="project:${projects}">
                 <a class="portfolio-item" style="background-image: url(static/img/portfolio-1.png);"
-                   href="https://github.com/moonseoklee/kugrade">
+                   th:href="${project.gitUrl}">
                     <div class="details">
-                        <h4>KUGrade</h4>
-                        <span>Django</span>
-                        <span>&nbsp;</span>
-                        <span>고려대학교 포털 아이디로 로그인을 하면 전체 성적을 그래프로 보여줍니다</span>
+                        <h4 th:text="${project.title}"></h4>
+                        <span th:text="${project.description}"></span>
+
                     </div>
                 </a>
             </div>
 
-            <div class="col-md-3">
+            <!--div class="col-md-3">
                 <a class="portfolio-item" style="background-image: url(static/img/portfolio-2.PNG);"
                    href="https://github.com/moonseoklee/bitPrice">
                     <div class="details">
@@ -263,30 +262,9 @@ Porfolio Section
                         <span>암호화폐 거래소 API에서 수집한 암호화폐별 가격을 보여줍니다</span>
                     </div>
                 </a>
-            </div>
+            </div-->
 
-            <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(static/img/portfolio-3.PNG);"
-                   href="https://github.com/moonseoklee/portfolio">
-                    <div class="details">
-                        <h4>Portfolio</h4>
-                        <span>springboot bootstrap</span>
-                        <span>&nbsp;</span>
-                        <span>Springboot를 이용한 웹 포트폴리오. html 템플릿 저작권은 imperial-theme에게 있습니다. </span>
-                    </div>
-                </a>
-            </div>
 
-            <div class="col-md-3">
-                <a class="portfolio-item" style="background-image: url(static/img/portfolio-4.png);" href="">
-                    <div class="details">
-                        <h4>인구 대비 범죄, 범죄율 시각화</h4>
-                        <span>python, folium(python lib)</span>
-                        <span>&nbsp;</span>
-                        <span>공공데이터 포털의 데이터를 파싱해 시각화합니다</span>
-                    </div>
-                </a>
-            </div>
 
 
         </div>
