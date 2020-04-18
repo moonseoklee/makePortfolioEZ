@@ -6,14 +6,15 @@
     <title>프로젝트 수정</title>
 </head>
 <body>
-    <div th:text="${title}"></div>
-    <div th:text="${description}"></div>
+    <div th:text="${title}">제목</div>
+    <div th:text="${description}">설명</div>
     <div th:text="${url}"></div>
 
     <form th:action="@{'/modifyproject'(id=${id})}" method="post" >
         <input type="text" name="projectTitle" th:value="${title}" />
+
+        <textarea name="projectDescription" th:value="${description}" ></textarea>
         <input type="text" name="projectUrl" th:value="${url}" />
-        <textarea name="projectDescription" th:placeholder="${description}" ></textarea>
         <button type="submit" id="modifyproject"><i class="fa fa-refresh"></i></button>
     </form>
 </body>

@@ -30,12 +30,11 @@ public class WriteController {
 
 
         ModelAndView modelAndView = new ModelAndView();
-        //System.out.println(userService.getSkills(session.getAttribute("userId").toString()).get(0));
-        //System.out.println(userService.getPLS(session.getAttribute("userId").toString()));
+
         modelAndView.clear();
         User user = userService.findById(session.getAttribute("userId").toString()).orElse(null);
 
-        System.out.println(user+"projects");
+
         ArrayList arr = userService.getSkills(session.getAttribute("userId").toString());
         modelAndView.addObject("pls",user.getPLS());
         modelAndView.addObject("dbs",user.getDbs());
@@ -47,7 +46,7 @@ public class WriteController {
         modelAndView.addObject("projects",user.getProjects());
 
         //modelAndView.addObject("etcs",userService.getSkills(session.getAttribute("userId").toString()).get(3));
-        System.out.println(modelAndView.getModel());
+
         // URI location = new URI("/list/"+resource.getIdx());
         modelAndView.setViewName("/home");
         return modelAndView;

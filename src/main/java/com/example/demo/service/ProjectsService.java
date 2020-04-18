@@ -56,4 +56,16 @@ public class ProjectsService {
         return projectsRepository.findById(Long.parseLong(id));
     }
 
+    public void modifyProject(String pId, String title, String des, String url) {
+        Long id = Long.parseLong(pId);
+
+        Project project = projectsRepository.findById(id).orElse(null);
+        System.out.println(title+des+url+"aa");
+        project.setDescription(des);
+        project.setTitle(title);
+        project.setGitUrl(url);
+
+        projectsRepository.save(project);
+
+    }
 }

@@ -5,6 +5,7 @@ import com.example.demo.service.ProjectsService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,9 +39,14 @@ public class ProjectsController {
     }
 
     @RequestMapping(value="/modifyproject",method=RequestMethod.POST)
-    public String modifyProject(HttpServletRequest request,HttpSession session){
-        projectsService.findProject(request.getParameter("id"));
+    public String modifyProject(HttpServletRequest request, HttpSession session) throws URISyntaxException {
+        String id = request.getParameter("id");
+        String title = request.getParameter("projectTitle");
+        String des = request.getParameter("projectDescription");
+        String url = request.getParameter("projectUrl");
+        projectsService.modifyProject(id,title,des,url);
 
+        return "redirect:/project?id="+id;
     }
 
     @RequestMapping(value="/deleteproject", method = RequestMethod.POST)
