@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Project;
 import com.example.demo.service.ProjectsService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,21 @@ public class ProjectsController {
         projectsService.deleteProject(request.getParameter("id"));
 
         return"redirect:/home";
+    }
+
+    @RequestMapping(value="/project", method = RequestMethod.POST)
+    public ModelAndView modifyProject(HttpServletRequest request,HttpSession session) throws URISyntaxException {
+        ModelAndView modelAndView = new ModelAndView();
+
+        Project project = projectsService.findProject(request.getParameter("id")).orElse(null);
+
+        modelAndView.addObject("title",project.getTitle());
+        modelAndView.addObject("id",project.getId());
+        modelAndView.addObject("description",project.getDescription());
+        modelAndView.addObject("url",project.getGitUrl());
+
+        modelAndView.setViewName("/project");
+
+        return modelAndView;
     }
 }

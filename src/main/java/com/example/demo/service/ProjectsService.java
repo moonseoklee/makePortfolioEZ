@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjectsService {
@@ -26,7 +27,9 @@ public class ProjectsService {
 
 
     public void update(String userId, String title, String description,String url) {
-        System.out.println(title+description);
+        if(url.substring(0,4)!="http"){
+            url = "https://"+url;
+        }
         Project project = new Project();
         project = project.builder().userId(userId).title(title).description(description).gitUrl(url).build();
         projectsRepository.save(project);
@@ -48,4 +51,9 @@ public class ProjectsService {
     public void deleteProject(String id) {
         projectsRepository.deleteById(Long.parseLong(id));
     }
+
+    public Optional<Project> findProject(String id){
+        return projectsRepository.findById(Long.parseLong(id));
+    }
+
 }
