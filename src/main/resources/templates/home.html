@@ -291,7 +291,8 @@
             </form>
             <table>
             <tr th:each="project : ${projects}">
-                <td th:text="${project.getTitle()}" align="left"><a th:action="@{'/project'(id=${project.getId()})}"></a> </td>
+
+                    <td><a th:href="@{'/project'(id=${project.getId()})}" th:method="post" th:text="${project.getTitle()}" style="color: darkgreen" target="_blank" /></td>
                 <td>
                     <form action="#" th:action="@{'/deleteproject'(id=${project.getId()})}" th:method="delete" >
                         <input type="hidden" name="_method" value="delete" />

@@ -36,6 +36,13 @@ public class ProjectsController {
         return modelAndView;
 
     }
+
+    @RequestMapping(value="/modifyproject",method=RequestMethod.POST)
+    public String modifyProject(HttpServletRequest request,HttpSession session){
+        projectsService.findProject(request.getParameter("id"));
+
+    }
+
     @RequestMapping(value="/deleteproject", method = RequestMethod.POST)
     public String deleteProject(HttpServletRequest request,HttpSession session) throws URISyntaxException {
         projectsService.deleteProject(request.getParameter("id"));
@@ -43,8 +50,8 @@ public class ProjectsController {
         return"redirect:/home";
     }
 
-    @RequestMapping(value="/project", method = RequestMethod.POST)
-    public ModelAndView modifyProject(HttpServletRequest request,HttpSession session) throws URISyntaxException {
+    @RequestMapping(value="/project", method = RequestMethod.GET)
+    public ModelAndView project(HttpServletRequest request,HttpSession session) throws URISyntaxException {
         ModelAndView modelAndView = new ModelAndView();
 
         Project project = projectsService.findProject(request.getParameter("id")).orElse(null);

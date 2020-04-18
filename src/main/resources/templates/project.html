@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <title>프로젝트 수정</title>
 </head>
@@ -8,5 +9,12 @@
     <div th:text="${title}"></div>
     <div th:text="${description}"></div>
     <div th:text="${url}"></div>
+
+    <form th:action="@{'/modifyproject'(id=${id})}" method="post" >
+        <input type="text" name="projectTitle" th:value="${title}" />
+        <input type="text" name="projectUrl" th:value="${url}" />
+        <textarea name="projectDescription" th:placeholder="${description}" ></textarea>
+        <button type="submit" id="modifyproject"><i class="fa fa-refresh"></i></button>
+    </form>
 </body>
 </html>
