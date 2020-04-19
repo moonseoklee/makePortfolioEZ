@@ -30,4 +30,8 @@ public class Project {
     @Column
     @Setter
     private String description;
+
+    @Lob
+    @Column
+    private byte[] projectImg;
 }

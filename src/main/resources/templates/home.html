@@ -287,8 +287,22 @@
                 <input type="text" name="projectTitle" th:value="프로젝트명" />
                 <input type="text" name="projectUrl" th:value="gitRepo" />
                 <textarea name="projectDescription" th:placeholder="프로젝트설명" ></textarea>
+                <div class="filebox"> <input class="upload-name" value="파일선택" disabled="disabled">
+                    <label for="ex_filename">이미지 첨부</label>
+                    <input type="file" enctype="multipart/form-data" name="projectImg" id="ex_filename" class="upload-hidden">
+                </div>
+
+
                 <button type="submit" id="updateproject"><i class="fa fa-refresh"></i></button>
             </form>
+            <script>
+            $(document).ready(function(){ var fileTarget = $('.filebox .upload-hidden'); fileTarget.on('change', function(){
+                if(window.FileReader){
+                    var filename = $(this)[0].files[0].name; }
+                else {  var filename = $(this).val().split('/').pop().split('\\').pop(); }
+                $(this).siblings('.upload-name').val(filename); }); });
+            </script>
+
             <table>
             <tr th:each="project : ${projects}">
 

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.net.URISyntaxException;
 
 @Controller
@@ -29,6 +30,8 @@ public class ProjectsController {
         String title = request.getParameter("projectTitle");
         String description = request.getParameter("projectDescription");
         String gitUrl = request.getParameter("projectUrl");
+        String file = (request.getParameter("projectImg"));
+        System.out.println(file+"file);
         projectsService.update(session.getAttribute("userId").toString(),title,description,gitUrl);
 
         ModelAndView modelAndView;
