@@ -31,7 +31,8 @@ public class Project {
     @Setter
     private String description;
 
-    @Lob
+
     @Column
-    private byte[] projectImg;
+    @Setter
+    private String projectLoc;
 }

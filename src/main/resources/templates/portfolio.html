@@ -242,7 +242,7 @@ Porfolio Section
 
         <div class="row">
             <div class="col-md-3" th:each="project:${projects}">
-                <a class="portfolio-item" style="background-image: url(static/img/portfolio-1.png);"
+                <a class="portfolio-item"  th:style="'background-image:url(' + ${project.projectLoc} + ');'"
                    th:href="${project.gitUrl}">
                     <div class="details">
                         <h4 th:text="${project.title}"></h4>

@@ -8,12 +8,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 public class ProjectsController {
@@ -26,13 +32,26 @@ public class ProjectsController {
 
 
     @RequestMapping(value = "/updateproject", method = {RequestMethod.POST,RequestMethod.GET})
-    public ModelAndView updateProject(HttpServletRequest request, HttpSession session) throws URISyntaxException {
+    public ModelAndView updateProject(@RequestParam("projectImg") MultipartFile file, HttpServletRequest request, HttpSession session) throws URISyntaxException, IOException {
         String title = request.getParameter("projectTitle");
         String description = request.getParameter("projectDescription");
         String gitUrl = request.getParameter("projectUrl");
-        String file = (request.getParameter("projectImg"));
-        System.out.println(file+"file);
-        projectsService.update(session.getAttribute("userId").toString(),title,description,gitUrl);
+
+
+        String path2;
+        System.out.println(file);
+        if(!file.isEmpty()) {
+
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get("C:\\Users\\winny\\Desktop\\MS\\coding\\makePortfolio\\src\\main\\resources\\static\\img\\" + file.getOriginalFilename());
+            Files.write(path, bytes);
+            path2 = "/img/" + file.getOriginalFilename();
+        }else{
+            path2 = "";
+        }
+        projectsService.update(session.getAttribute("userId").toString(),title,description,gitUrl,path2);
+
+
 
         ModelAndView modelAndView;
         modelAndView = writeController.list(session);

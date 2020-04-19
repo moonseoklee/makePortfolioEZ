@@ -7,7 +7,10 @@ import com.example.demo.domain.User;
 import com.example.demo.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,12 +29,14 @@ public class ProjectsService {
 
 
 
-    public void update(String userId, String title, String description,String url) {
+    public void update(String userId, String title, String description, String url, String filePath) throws IOException {
         if(url.substring(0,4)!="http"){
             url = "https://"+url;
         }
         Project project = new Project();
-        project = project.builder().userId(userId).title(title).description(description).gitUrl(url).build();
+
+
+        project = project.builder().userId(userId).title(title).description(description).gitUrl(url).projectLoc(filePath).build();
         projectsRepository.save(project);
     }
 

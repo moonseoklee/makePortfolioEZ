@@ -283,16 +283,14 @@
         </div>
         <div class="col-sm-5" style="padding-top: 20px">
             <h4>Projects</h4>
-            <form th:action="@{'/updateproject'}" method="post" >
+            <form th:action="@{'/updateproject'}"  enctype="multipart/form-data" method="post" >
                 <input type="text" name="projectTitle" th:value="프로젝트명" />
                 <input type="text" name="projectUrl" th:value="gitRepo" />
                 <textarea name="projectDescription" th:placeholder="프로젝트설명" ></textarea>
                 <div class="filebox"> <input class="upload-name" value="파일선택" disabled="disabled">
                     <label for="ex_filename">이미지 첨부</label>
-                    <input type="file" enctype="multipart/form-data" name="projectImg" id="ex_filename" class="upload-hidden">
+                    <input type="file" name="projectImg" id="ex_filename" class="upload-hidden">
                 </div>
-
-
                 <button type="submit" id="updateproject"><i class="fa fa-refresh"></i></button>
             </form>
             <script>
