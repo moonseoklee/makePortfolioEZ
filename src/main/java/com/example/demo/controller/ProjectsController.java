@@ -43,7 +43,7 @@ public class ProjectsController {
         if(!file.isEmpty()) {
 
             byte[] bytes = file.getBytes();
-            Path path = Paths.get("C:\\Users\\winny\\Desktop\\MS\\coding\\makePortfolio\\src\\main\\resources\\static\\img\\" + file.getOriginalFilename());
+            Path path = Paths.get("./src/main/resources/static/img/" + file.getOriginalFilename());
             Files.write(path, bytes);
             path2 = "/img/" + file.getOriginalFilename();
         }else{
