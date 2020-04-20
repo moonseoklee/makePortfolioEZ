@@ -26,7 +26,7 @@ public class HtmlController {
         modelAndView.addObject("skills",userService.getSkills(session.getAttribute("userId").toString()));
         modelAndView.addObject("des",user.getDescription());
         modelAndView.addObject("projects",user.getProjects());
-        modelAndView.setViewName("/portfolio");
+        modelAndView.setViewName("portfolio");
         return modelAndView;
     }
     @RequestMapping(value = "/home2", method = {RequestMethod.GET})
