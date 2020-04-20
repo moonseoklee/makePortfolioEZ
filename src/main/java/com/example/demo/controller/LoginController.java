@@ -54,7 +54,7 @@ public class LoginController {
                 CLIENT_ID, redirectURI, state);
         session.setAttribute("state", state);
         model.addAttribute("apiURL", apiURL);
-        return "/index";
+        return "index";
     }
 
     @RequestMapping("/callback")
