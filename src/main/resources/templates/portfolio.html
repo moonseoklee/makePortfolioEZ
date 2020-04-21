@@ -168,7 +168,7 @@ About Section
         <div class="row">
             <div class="col-md-2 service-item" th:each="skill : ${skills[0]}">
 
-                <div class="service-icon"><img th:src="@{https://img.icons8.com/color/48/000000/{image}.png(image=${skill})}"></div>
+                <div class="service-icon"><img th:src="@{/img/{image}.png(image=${skill})}"></div>
                 <h4 class="service-title" th:text="${skill}"><a href=""></a></h4>
             </div>
 
@@ -178,7 +178,7 @@ About Section
         <div class="row">
             <div class="col-md-2 service-item" th:each="skill : ${skills[1]}">
 
-                <div class="service-icon"><img th:src="@{https://img.icons8.com/color/48/000000/{image}.png(image=${skill})}"></div>
+                <div class="service-icon"><img th:src="@{/img/{image}.png(image=${skill})}"></div>
                 <h4 class="service-title" th:text="${skill}"><a href=""></a></h4>
             </div>
 
@@ -189,7 +189,7 @@ About Section
         <div class="row">
             <div class="col-md-2 service-item" th:each="skill : ${skills[2]}">
 
-                <div class="service-icon"><img th:src="@{https://img.icons8.com/color/48/000000/{image}.png(image=${skill})}"></div>
+                <div class="service-icon"><img th:src="@{/img/{image}.png(image=${skill})}"></div>
                 <h4 class="service-title" th:text="${skill}"><a href=""></a></h4>
             </div>
 
@@ -200,7 +200,7 @@ About Section
         <div class="row">
             <div class="col-md-2 service-item" th:each="skill : ${skills[3]}">
 
-                <div class="service-icon"><img th:src="@{https://img.icons8.com/color/48/000000/{image}.png(image=${skill})}"></div>
+                <div class="service-icon"><img th:src="@{/img/{image}.png(image=${skill})}"></div>
                 <h4 class="service-title" th:text="${skill}"><a href=""></a></h4>
             </div>
 

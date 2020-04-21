@@ -35,7 +35,7 @@ public class HtmlController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("name",session.getAttribute("userId").toString());
         //modelAndView.addObject("skills",userService.getPLS(session.getAttribute("userId").toString()));
-        modelAndView.setViewName("/home2");
+        modelAndView.setViewName("home2");
         return modelAndView;
     }
 

@@ -68,14 +68,14 @@ public class ProjectsController {
         String url = request.getParameter("projectUrl");
         projectsService.modifyProject(id,title,des,url);
 
-        return "redirect:/project?id="+id;
+        return "redirect:project?id="+id;
     }
 
     @RequestMapping(value="/deleteproject", method = RequestMethod.POST)
     public String deleteProject(HttpServletRequest request,HttpSession session) throws URISyntaxException {
         projectsService.deleteProject(request.getParameter("id"));
 
-        return"redirect:/home";
+        return"redirect:home";
     }
 
     @RequestMapping(value="/project", method = RequestMethod.GET)
@@ -89,7 +89,7 @@ public class ProjectsController {
         modelAndView.addObject("description",project.getDescription());
         modelAndView.addObject("url",project.getGitUrl());
 
-        modelAndView.setViewName("/project");
+        modelAndView.setViewName("project");
 
         return modelAndView;
     }
