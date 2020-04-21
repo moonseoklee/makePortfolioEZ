@@ -61,7 +61,7 @@ public class ProjectsService {
         return projectsRepository.findById(Long.parseLong(id));
     }
 
-    public void modifyProject(String pId, String title, String des, String url) {
+    public void modifyProject(String pId, String title, String des, String url,String filepath) {
         Long id = Long.parseLong(pId);
 
         Project project = projectsRepository.findById(id).orElse(null);
@@ -69,7 +69,7 @@ public class ProjectsService {
         project.setDescription(des);
         project.setTitle(title);
         project.setGitUrl(url);
-
+        project.setProjectLoc(filepath);
         projectsRepository.save(project);
 
     }

@@ -10,11 +10,15 @@
     <div th:text="${description}">설명</div>
     <div th:text="${url}"></div>
 
-    <form th:action="@{'/modifyproject'(id=${id})}" method="post" >
+    <form th:action="@{'/modifyproject'(id=${id})}"  enctype="multipart/form-data"  method="post" >
         <input type="text" name="projectTitle" th:value="${title}" />
 
         <textarea name="projectDescription" th:value="${description}" ></textarea>
         <input type="text" name="projectUrl" th:value="${url}" />
+        <div class="filebox"> <input class="upload-name" value="파일선택" disabled="disabled">
+            <label for="ex_filename"></label>
+            <input type="file" name="projectImg" id="ex_filename" class="upload-hidden">
+        </div>
         <button type="submit" id="modifyproject"><i class="fa fa-refresh"></i></button>
     </form>
 </body>

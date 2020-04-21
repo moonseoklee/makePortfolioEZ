@@ -60,13 +60,26 @@ public class ProjectsController {
 
     }
 
-    @RequestMapping(value="/modifyproject",method=RequestMethod.POST)
-    public String modifyProject(HttpServletRequest request, HttpSession session) throws URISyntaxException {
+    @RequestMapping(value="/modifyproject", method = {RequestMethod.POST,RequestMethod.GET})
+    public String modifyProject(@RequestParam("projectImg") MultipartFile file,HttpServletRequest request, HttpSession session) throws URISyntaxException, IOException {
         String id = request.getParameter("id");
         String title = request.getParameter("projectTitle");
         String des = request.getParameter("projectDescription");
         String url = request.getParameter("projectUrl");
-        projectsService.modifyProject(id,title,des,url);
+        String path2;
+
+        if(!file.isEmpty()) {
+
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get("./src/main/resources/static/img/" + file.getOriginalFilename());
+            Files.write(path, bytes);
+            path2 = "/img/" + file.getOriginalFilename();
+        }else{
+            path2 = "";
+        }
+
+
+        projectsService.modifyProject(id,title,des,url,path2);
 
         return "redirect:project?id="+id;
     }
