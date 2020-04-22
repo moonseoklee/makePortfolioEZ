@@ -65,7 +65,7 @@ public class ProjectsService {
         Long id = Long.parseLong(pId);
 
         Project project = projectsRepository.findById(id).orElse(null);
-        System.out.println(title+des+url+"aa");
+
         project.setDescription(des);
         project.setTitle(title);
         project.setGitUrl(url);
