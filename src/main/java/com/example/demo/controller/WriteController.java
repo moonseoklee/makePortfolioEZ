@@ -56,31 +56,31 @@ public class WriteController {
     public String deletepl(@PathVariable String skill,HttpSession session) throws URISyntaxException {
         userService.delete("pl",session.getAttribute("userId").toString(),skill);
 
-        return "redirect:home";
+        return "redirect:/home";
     }
     @RequestMapping(value="/delete/db/{skill}", method = RequestMethod.POST)
     public String deletedb(@PathVariable String skill,HttpSession session) throws URISyntaxException {
         userService.delete("db",session.getAttribute("userId").toString(),skill);
 
-        return "redirect:home";
+        return "redirect:/home";
     }
     @RequestMapping(value="/delete/framework/{skill}", method = RequestMethod.POST)
     public String deleteFramework(@PathVariable String skill,HttpSession session) throws URISyntaxException {
         userService.delete("fr",session.getAttribute("userId").toString(),skill);
 
-        return "redirect:home";
+        return "redirect:/home";
     }
     @RequestMapping(value="/delete/etc/{skill}", method = RequestMethod.POST)
     public String deleteEtc(@PathVariable String skill,HttpSession session) throws URISyntaxException {
         userService.delete("etc",session.getAttribute("userId").toString(),skill);
 
-        return "redirect:home";
+        return "redirect:/home";
     }
     @RequestMapping(value="/deleteAllpl", method = RequestMethod.POST)
     public String deleteAll(HttpSession session) throws URISyntaxException {
         userService.deleteAll(session.getAttribute("userId").toString());
 
-        return"redirect:home";
+        return"redirect:/home";
     }
     @RequestMapping(value="/updatepl", method = RequestMethod.POST)
     @ResponseBody
